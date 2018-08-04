@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+ 
+    <div class="col-sm-4">
+        @using (Html.BeginForm("CadastrarProduto", "Produto", FormMethod.Post, new { @class = "form-group" }))
+        {
+
+            <fieldset>
+                <legend>Cadastrar Produto</legend>
+             
+
+                @Html.Label("Nome do produto")
+                @Html.TextBox("txtNome", null, new { @class = "form-control", @placeholder = "Nome do Produto" })<br>
+
+
+                @Html.Label("Descrição do produto")
+                @Html.TextBox("txtDescricao",null, new { @class = "form-control", @placeholder = "Desc. do Produto" })<br>
+
+
+                @Html.Label("Preço do produto")
+                @Html.TextBox("txtPreco", null, new { @class = "form-control" , @placeholder = "Preço em R$" })<br>
+
+                @Html.Label("Categoria do produto")
+                @Html.TextBox("txtCategoria", null, new { @class = "form-control" , @placeholder = "Categ. do Produto" })<br>
+            </fieldset>
+            <input type="submit" value="Cadastrar"  class="btn btn-success"/>
+        }
+    </div>
