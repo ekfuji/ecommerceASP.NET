@@ -1,17 +1,47 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Layout.cshtml";
+    DateTime data = ViewBag.Data;
+    List<ecommerce.Models.Produto> produtos = ViewBag.Produtos;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<div>
+    <p>
+        <h2>Gerenciamento de Produtos</h2>
+    </p>
+    @*<a href="~/Views/Produto/Cadastrar"> Cadastrar Produto </a>*@
+
+    @* Link em MVC | Razor *@
+
+
+
+    <div>
+        <table class="table table-hover">
+            <tr class="table-secondary">
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Excluir</th>
+                <th>Alterar</th>
+            </tr>
+
+            @foreach (ecommerce.Models.Produto produtoCadastrado in produtos)
+            {
+                <tr>
+                    <td>@produtoCadastrado.Nome</td>
+                    <td>@produtoCadastrado.Descricao</td>
+                    <td>@produtoCadastrado.Preco</td>
+                    <td>@produtoCadastrado.Categoria</td>
+                    <td>@Html.ActionLink("Remover", "RemoverProduto", "Produto", new { id = produtoCadastrado.ProdutoId }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("Alterar", "AlterarProduto", "Produto", new { id = produtoCadastrado.ProdutoId }, new { @class = "btn btn-primary" })</td>
+                </tr>
+
+
+            }
+
+        </table>
+
     </div>
-</body>
-</html>
+</div>
