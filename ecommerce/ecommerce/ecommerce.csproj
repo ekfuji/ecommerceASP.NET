@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201808040306264_CriarBanco.Designer.cs">
       <DependentUpon>201808040306264_CriarBanco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808071237188_AlterTableProduto.cs" />
+    <Compile Include="Migrations\201808071237188_AlterTableProduto.Designer.cs">
+      <DependentUpon>201808071237188_AlterTableProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Produto.cs" />
@@ -158,6 +162,8 @@
     <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Produto\AlterarProduto.cshtml" />
     <Content Include="Views\Produto\CadastrarProduto.cshtml" />
+    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\_viewstart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -167,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -175,6 +180,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808040306264_CriarBanco.resx">
       <DependentUpon>201808040306264_CriarBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071237188_AlterTableProduto.resx">
+      <DependentUpon>201808071237188_AlterTableProduto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

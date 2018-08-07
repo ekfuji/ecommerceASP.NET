@@ -1,8 +1,9 @@
-﻿
+﻿@using ecommerce.Models
+@model List<Produto>
 @{
-    Layout = "~/Views/Shared/Layout.cshtml";
+    
     DateTime data = ViewBag.Data;
-    List<ecommerce.Models.Produto> produtos = ViewBag.Produtos;
+   
 }
 
 
@@ -27,7 +28,7 @@
                 <th>Alterar</th>
             </tr>
 
-            @foreach (ecommerce.Models.Produto produtoCadastrado in produtos)
+            @foreach (Produto produtoCadastrado in Model)
             {
                 <tr>
                     <td>@produtoCadastrado.Nome</td>

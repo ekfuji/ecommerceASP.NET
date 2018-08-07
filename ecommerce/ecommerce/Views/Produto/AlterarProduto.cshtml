@@ -1,33 +1,57 @@
 ﻿
-@using ecommerce.Models
 @{
-    Layout = "~/Views/Shared/Layout.cshtml";
-    Produto produto = ViewBag.Produto;
+
 }
 
-   <div class="col-sm-4">
-        @using (Html.BeginForm("AlterarProduto", "Produto", FormMethod.Post, new { @class = "form-group" }))
-        {
-
-            <fieldset>
-                <legend>Alterar Produto</legend>
-
-                @Html.Hidden("txtid",produto.ProdutoId)
-
-                @Html.Label("Nome do produto")
-                @Html.TextBox("txtNome", produto.Nome, new { @class = "form-control", @placeholder = "Nome do Produto" })<br>
+@model ecommerce.Models.Produto
 
 
-                @Html.Label("Descrição do produto")
-                @Html.TextBox("txtDescricao", produto.Descricao, new { @class = "form-control", @placeholder = "Desc. do Produto" })<br>
+<div class="col-sm-4">
+    @using (Html.BeginForm("AlterarProduto", "Produto", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+        <fieldset>
+            <legend>Alterar Produto</legend>
+            @Html.HiddenFor(model => Model.ProdutoId)
 
+            @Html.LabelFor(Model => Model.Nome)
+            @Html.ValidationMessageFor(Model => Model.Nome, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.Nome,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Nome do Produto"
 
-                @Html.Label("Preço do produto")
-                @Html.TextBox("txtPreco", produto.Preco, new { @class = "form-control", @placeholder = "Preço em R$" })<br>
+                    })<br />
+            @Html.LabelFor(Model => Model.Descricao)
+            @Html.ValidationMessageFor(Model => Model.Descricao, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.Descricao,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Descrição do Produto"
 
-                @Html.Label("Categoria do produto")
-                @Html.TextBox("txtCategoria", produto.Categoria, new { @class = "form-control", @placeholder = "Categ. do Produto" })<br>
-            </fieldset>
-            <input type="submit" value="Alterar" class="btn btn-warning" />
-        }
-    </div>
+                    })<br />
+            @Html.LabelFor(Model => Model.Preco)
+            @Html.ValidationMessageFor(Model => Model.Preco, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.Preco,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Preço em R$"
+
+                    })<br />
+            @Html.LabelFor(Model => Model.Categoria)
+            @Html.ValidationMessageFor(Model => Model.Categoria, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.Categoria,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Categ. do Produto"
+
+                    })<br />
+
+        </fieldset>
+            <input type="submit" value="Alterar" class="btn btn-success" />
+    }
+</div>
