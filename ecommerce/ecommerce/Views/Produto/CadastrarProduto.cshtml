@@ -1,32 +1,31 @@
-﻿
-@{
+﻿@{
 
 }
 
+@using System.Web.Mvc.Html
+@using ecommerce.Models
 @model ecommerce.Models.Produto
 
 
 <div class="col-sm-4">
     @using (Html.BeginForm("CadastrarProduto", "Produto", FormMethod.Post, new { @class = "form-group" }))
     {
-
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
         <fieldset>
-            <legend>Cadastrar Produto</legend>
-            @Html.ValidationSummary(true, null, new { @class = "text-alert"})
+            <legend>Alterar Produto</legend>
+            @Html.HiddenFor(model => Model.ProdutoId)
 
-            @Html.ValidationMessageFor(Model => Model.Nome, null, new { @class = "text-danger" })<br/>
             @Html.LabelFor(Model => Model.Nome)
+            @Html.ValidationMessageFor(Model => Model.Nome, null, new { @class = "text-danger" })<br />
             @Html.TextBoxFor(Model => Model.Nome,
-         new
-         {
-             @class = "form-control",
-             @placeholder = "Nome do Produto"
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Nome do Produto"
 
-         })<br />
-
-
-            @Html.ValidationMessageFor(Model => Model.Descricao, null, new { @class = "text-danger" })<br />
+                    })<br />
             @Html.LabelFor(Model => Model.Descricao)
+            @Html.ValidationMessageFor(Model => Model.Descricao, null, new { @class = "text-danger" })<br />
             @Html.TextBoxFor(Model => Model.Descricao,
                     new
                     {
@@ -34,12 +33,8 @@
                         @placeholder = "Descrição do Produto"
 
                     })<br />
-
-
-
-
-            @Html.ValidationMessageFor(Model => Model.Preco, null, new { @class = "text-danger" })<br />
             @Html.LabelFor(Model => Model.Preco)
+            @Html.ValidationMessageFor(Model => Model.Preco, null, new { @class = "text-danger" })<br />
             @Html.TextBoxFor(Model => Model.Preco,
                     new
                     {
@@ -48,17 +43,6 @@
 
                     })<br />
 
-
-
-            @Html.ValidationMessageFor(Model => Model.Categoria, null, new { @class = "text-danger" })<br />
-            @Html.LabelFor(Model => Model.Categoria)
-            @Html.TextBoxFor(Model => Model.Categoria,
-                    new
-                    {
-                        @class = "form-control",
-                        @placeholder = "Categ. do Produto"
-
-                    })<br />
 
         </fieldset>
         <input type="submit" value="Cadastrar" class="btn btn-success" />

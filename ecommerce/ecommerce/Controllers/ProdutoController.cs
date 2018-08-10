@@ -18,13 +18,15 @@ namespace ecommerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Data = DateTime.Now;
+
             return View(ProdutoDAO.ReturnProdutos());
         }
         #endregion
 
         #region Pag Cadastrar Produto
         public ActionResult CadastrarProduto()
-        {
+        {  
+            
             return View();
         }
         #endregion
@@ -35,6 +37,7 @@ namespace ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.Data = new SelectList(ctx.Categorias, "Id", "Nome");
                 if (ProdutoDAO.CadastrarProduto(produto))
                 {
                     return RedirectToAction("Index", "Produto");
@@ -79,7 +82,7 @@ namespace ecommerce.Controllers
             produtoOriginal.Nome = produtoAlterado.Nome;
             produtoOriginal.Descricao = produtoAlterado.Descricao;
             produtoOriginal.Preco = produtoAlterado.Preco;
-            produtoOriginal.Categoria = produtoAlterado.Categoria;
+            produtoOriginal.CategoriaId = produtoAlterado.CategoriaId;
 
             // ctx.Entry(produto).State = System.Data.Entity.EntityState.Modified;
             if (ModelState.IsValid)

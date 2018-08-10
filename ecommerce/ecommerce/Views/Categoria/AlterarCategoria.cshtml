@@ -1,0 +1,31 @@
+﻿
+@{
+
+}
+
+@model ecommerce.Models.Categoria
+
+
+<div class="col-sm-4">
+    @using (Html.BeginForm("AlterarCategoria", "Categoria", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+        <fieldset>
+            <legend>Alterar Categoria</legend>
+            @Html.HiddenFor(model => Model.CategoriaId)
+
+            @Html.LabelFor(Model => Model.Nome)
+            @Html.ValidationMessageFor(Model => Model.Nome, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.Nome,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Nome do Categoria"
+
+                    })<br />
+
+
+        </fieldset>
+        <input type="submit" value="Alterar" class="btn btn-success" />
+    }
+</div>

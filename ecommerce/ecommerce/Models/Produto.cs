@@ -27,10 +27,11 @@ namespace ecommerce.Models
         public double Preco { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
-        [MaxLength(50, ErrorMessage = "O campo deve ter no máximo de 50 caracteres!")]
         [Display(Name = "Categoria do produto")]
-        public string Categoria { get; set; }
+        public int CategoriaId { get; set; }
 
         public string Imagem { get; set; }
+
+        public virtual Categoria Categoria { get; set; }
     }
 }

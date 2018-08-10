@@ -1,0 +1,35 @@
+﻿
+@{
+
+
+}
+
+@model ecommerce.Models.Categoria
+
+
+
+
+<div class="col-sm-4">
+    @using (Html.BeginForm("CadastrarCategoria", "Categoria", FormMethod.Post, new { @class = "form-group" }))
+    {
+
+        <fieldset>
+            <legend>Cadastrar Categoria</legend>
+            @Html.ValidationSummary(true, null, new { @class = "text-alert" })
+
+            @Html.ValidationMessageFor(Model => Model.Nome, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(Model => Model.Nome)
+            @Html.TextBoxFor(Model => Model.Nome,
+         new
+         {
+             @class = "form-control",
+             @placeholder = "Nome do Categoria"
+
+         })<br />
+
+
+           
+        </fieldset>
+        <input type="submit" value="Cadastrar" class="btn btn-success" />
+    }
+</div>

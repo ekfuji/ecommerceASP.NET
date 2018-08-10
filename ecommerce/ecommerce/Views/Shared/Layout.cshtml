@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        @Html.ActionLink("Ecommerce - Keikoramica", "Index", "Produto", null, new { @class = "navbar-brand" })
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+ 
+    @Html.ActionLink("Ecommerce - Keikoramica", "Index", "Produto", null, new {@class = "navbar-brand"})
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    @Html.ActionLink("Cadastrar Produto", "CadastrarProduto", "Produto", null, new { @class = "nav-link" })
-                </li>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Cadastrar Produto", "CadastrarProduto", "Produto", null, new {@class = "nav-link"})
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Cadastrar Categoria", "CadastrarCategoria", "Categoria", null, new {@class = "nav-link"})
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Gerenciar Categoria", "Index", "Categoria", null, new {@class = "nav-link"})
+            </li>
 
-            </ul>
-        </div>
-    </nav>
+        </ul>
+    </div>
+</nav>
 
     <div id="content" class="container" style="margin-top: 30px">
         @RenderBody()
