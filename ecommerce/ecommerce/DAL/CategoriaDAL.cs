@@ -9,7 +9,7 @@ namespace ecommerce.DAL
 {
     public class CategoriaDAL
     {
-        private static Context ctx = new Context();
+        private static Context ctx = Singleton.GetInstance();
 
         #region Listar Categorias
         public static List<Categoria> ReturnCategorias()

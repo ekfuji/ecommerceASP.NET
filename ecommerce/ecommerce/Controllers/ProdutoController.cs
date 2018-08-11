@@ -2,6 +2,8 @@
 using ecommerce.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,19 +27,33 @@ namespace ecommerce.Controllers
 
         #region Pag Cadastrar Produto
         public ActionResult CadastrarProduto()
-        {  
-            
+        {
+            ViewBag.CategoriaId = new SelectList(ctx.Categorias, "CategoriaId", "Nome");
             return View();
         }
         #endregion
 
         #region Cadastrando Produto
         [HttpPost]
-        public ActionResult CadastrarProduto(Produto produto)
+        public ActionResult CadastrarProduto([Bind(Include = "ProdutoId,Nome,Descricao,Preco,CategoriaId")] HttpPostedFileBase fupImagem, Produto produto)
         {
+            ViewBag.CategoriaId = new SelectList(ctx.Categorias, "CategoriaId", "Nome");
             if (ModelState.IsValid)
             {
-                ViewBag.Data = new SelectList(ctx.Categorias, "Id", "Nome");
+                if (fupImagem != null)
+                {
+                    string nomeImagem = Path.GetFileName(fupImagem.FileName);
+                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName + "jpg");
+
+                    fupImagem.SaveAs(caminho);
+
+                    produto.Imagem = nomeImagem;
+                }
+                else
+                {
+                    produto.Imagem = "semimagem.jpg";
+                }
+
                 if (ProdutoDAO.CadastrarProduto(produto))
                 {
                     return RedirectToAction("Index", "Produto");
@@ -70,6 +86,7 @@ namespace ecommerce.Controllers
         #region Buscar Produto (AlterarProduto)
         public ActionResult AlterarProduto(int id)
         {
+            ViewBag.CategoriaId = new SelectList(ctx.Categorias, "CategoriaId", "Nome");
             return View(ProdutoDAO.BuscarProduto(id));
         }
         #endregion

@@ -9,12 +9,12 @@ namespace ecommerce.DAL
 {
     public class ProdutoDAO
     {
-        private static Context ctx = new Context();
+        private static Context ctx = Singleton.GetInstance();
 
         #region Listar Produtos
         public static List<Produto> ReturnProdutos()
         {
-            return ctx.Produtos.ToList();
+            return ctx.Produtos.Include("Categoria").ToList();
         }
         #endregion
 

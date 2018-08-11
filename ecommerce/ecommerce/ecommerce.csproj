@@ -128,9 +128,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\20482412_1SZ.jpg" />
+    <Content Include="Images\20628627_1GG.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Views\img\LOGO4.png" />
+    <Content Include="Images\LOGO4.png" />
+    <Content Include="Images\semimagem.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,12 +142,13 @@
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="DAL\CategoriaDAL.cs" />
     <Compile Include="DAL\ProdutoDAO.cs" />
+    <Compile Include="DAL\Singleton.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808100117468_CriarBanco.cs" />
-    <Compile Include="Migrations\201808100117468_CriarBanco.Designer.cs">
-      <DependentUpon>201808100117468_CriarBanco.cs</DependentUpon>
+    <Compile Include="Migrations\201808110040592_CriarBanco.cs" />
+    <Compile Include="Migrations\201808110040592_CriarBanco.Designer.cs">
+      <DependentUpon>201808110040592_CriarBanco.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categoria.cs" />
@@ -181,8 +185,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808100117468_CriarBanco.resx">
-      <DependentUpon>201808100117468_CriarBanco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808110040592_CriarBanco.resx">
+      <DependentUpon>201808110040592_CriarBanco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

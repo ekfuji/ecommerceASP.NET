@@ -13,7 +13,7 @@ namespace ecommerce.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201808100117468_CriarBanco"; }
+            get { return "201808110040592_CriarBanco"; }
         }
         
         string IMigrationMetadata.Source
