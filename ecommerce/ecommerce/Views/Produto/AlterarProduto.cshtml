@@ -8,7 +8,7 @@
 
 
 <div class="col-sm-4">
-    @using (Html.BeginForm("AlterarProduto", "Produto", FormMethod.Post, new { @class = "form-group", enctype = "multipart/from-data" }))
+    @using (Html.BeginForm("AlterarProduto", "Produto", FormMethod.Post, new { @class = "form-group", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, null, new { @class = "text-danger" })

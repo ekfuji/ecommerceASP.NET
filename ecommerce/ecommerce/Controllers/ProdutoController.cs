@@ -93,7 +93,7 @@ namespace ecommerce.Controllers
 
         #region Alterando Produto
         [HttpPost]
-        public ActionResult AlterarProduto(Produto produtoAlterado)
+        public ActionResult AlterarProduto(Produto produtoAlterado, HttpPostedFileBase fupImagem)
         {
             Produto produtoOriginal = ProdutoDAO.BuscarProduto(produtoAlterado.ProdutoId);
             produtoOriginal.Nome = produtoAlterado.Nome;
@@ -104,6 +104,19 @@ namespace ecommerce.Controllers
             // ctx.Entry(produto).State = System.Data.Entity.EntityState.Modified;
             if (ModelState.IsValid)
             {
+                if (fupImagem != null)
+                {
+                    string nomeImagem = Path.GetFileName(fupImagem.FileName);
+                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName + "jpg");
+
+                    fupImagem.SaveAs(caminho);
+
+                    produtoOriginal.Imagem = nomeImagem;
+                }
+                else
+                {
+                    produtoOriginal.Imagem = "semimagem.jpg";
+                }
                 if (ProdutoDAO.AlterarProduto(produtoOriginal))
                 {
                     return RedirectToAction("Index", "Produto");

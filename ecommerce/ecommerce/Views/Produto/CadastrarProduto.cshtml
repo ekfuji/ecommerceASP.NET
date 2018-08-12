@@ -3,13 +3,13 @@
     ViewBag.Title = "CadastrarProduto";
 }
 
-@using System.Web.Mvc.Html
+
 @using ecommerce.Models
 @model ecommerce.Models.Produto
 
 
 <div class="col-sm-4">
-    @using (Html.BeginForm("CadastrarProduto", "Produto", FormMethod.Post, new { @class = "form-group", enctype = "multipart/from-data" }))
+    @using (Html.BeginForm("CadastrarProduto", "Produto", FormMethod.Post, new { @class = "form-group"}))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, null, new { @class = "text-danger" })
