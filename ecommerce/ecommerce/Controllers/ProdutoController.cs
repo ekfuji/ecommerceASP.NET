@@ -43,7 +43,7 @@ namespace ecommerce.Controllers
                 if (fupImagem != null)
                 {
                     string nomeImagem = Path.GetFileName(fupImagem.FileName);
-                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName + "jpg");
+                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName);
 
                     fupImagem.SaveAs(caminho);
 
@@ -107,7 +107,7 @@ namespace ecommerce.Controllers
                 if (fupImagem != null)
                 {
                     string nomeImagem = Path.GetFileName(fupImagem.FileName);
-                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName + "jpg");
+                    string caminho = Path.Combine(Server.MapPath("~/Images/"), fupImagem.FileName);
 
                     fupImagem.SaveAs(caminho);
 
