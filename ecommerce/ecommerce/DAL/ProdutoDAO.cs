@@ -21,7 +21,7 @@ namespace ecommerce.DAL
         #region Cadastrar Produto
         public static bool CadastrarProduto(Produto produto)
         {
-            if(BuscarProdutoPorNome(produto) == null)
+            if (BuscarProdutoPorNome(produto) == null)
             {
                 ctx.Produtos.Add(produto);
                 ctx.SaveChanges();
@@ -49,6 +49,13 @@ namespace ecommerce.DAL
         }
         #endregion
 
+        #region Buscar produto por Id
+        public static Produto BuscarProdutoPorId(int id)
+        {
+            return ctx.Produtos.Find(id);
+        }
+        #endregion
+
         #region Buscar Produto
         public static Produto BuscarProduto(int id)
         {
@@ -59,13 +66,13 @@ namespace ecommerce.DAL
         #region Alterar Produto
         public static bool AlterarProduto(Produto produto)
         {
-            if(ctx.Produtos.FirstOrDefault(x => x.Nome.Equals(produto.Nome) && x.ProdutoId != produto.ProdutoId) == null)
+            if (ctx.Produtos.FirstOrDefault(x => x.Nome.Equals(produto.Nome) && x.ProdutoId != produto.ProdutoId) == null)
             {
                 ctx.Entry(produto).State = EntityState.Modified;
                 ctx.SaveChanges();
                 return true;
             }
-            return false;     
+            return false;
         }
         #endregion
 

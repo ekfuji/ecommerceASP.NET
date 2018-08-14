@@ -130,11 +130,20 @@
     <Content Include="Global.asax" />
     <Content Include="Images\20482412_1SZ.jpg" />
     <Content Include="Images\20628627_1GG.jpg" />
+    <Content Include="Images\more.png" />
     <Content Include="Images\nenhumProdutoNaCategoria.png" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Images\LOGO4.png" />
     <Content Include="Images\semimagem.jpg" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +183,8 @@
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\AlterarCategoria.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Descricao.cshtml" />
+    <Content Include="Views\Home\DetalheProduto.cshtml" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

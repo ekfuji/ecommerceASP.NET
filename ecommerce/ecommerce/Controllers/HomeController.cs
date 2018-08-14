@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ecommerce.Models;
@@ -30,6 +31,20 @@ namespace ecommerce.Controllers
             }
     
         }
+
+        public ActionResult DetalheProduto(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            } 
+            if (ProdutoDAO.BuscarProduto(id) == null)
+            {
+                return HttpNotFound();
+            }
+                return View(ProdutoDAO.BuscarProdutoPorId(id));
+        }
+
 
 
     }

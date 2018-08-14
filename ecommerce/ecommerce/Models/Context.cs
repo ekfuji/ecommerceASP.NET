@@ -19,7 +19,7 @@ namespace ecommerce.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Properties<string>().Configure(c => c.HasMaxLength(100));
-
+          
         }
     }
 }

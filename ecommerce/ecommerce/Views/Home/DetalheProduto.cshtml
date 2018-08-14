@@ -1,0 +1,23 @@
+﻿@model ecommerce.Models.Produto
+
+@{
+    ViewBag.Title = "DetalheProduto";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Detalhes do Produto</h2>
+
+<div class="card bg-light mb-3" style="max-width: 40rem;">
+    <div class="card-header" style="text-align: center"><h2>@Html.DisplayFor(model => model.Nome)</h2></div>
+    <img src="~/Images/@Model.Imagem" style="width: 200px; height: 200px; align-self: center" /><br />
+    <div class="card-body" style="text-align: center">
+        <p class="card-text"><b>Categoria: </b> @Html.DisplayFor(model => model.Categoria.Nome)</p>
+        <p class="card-text"><b>Descrição: </b>@Html.DisplayFor(model => model.Descricao)</p>
+        <p class="card-text"><b>Valor: </b>R$@Html.DisplayFor(model => model.Preco)</p><br />
+    </div>
+</div>
+
+
+<p>
+    <a href='@Url.Action("Index", "Home")'  class="btn btn-info">Voltar para a lista</a>
+</p>
