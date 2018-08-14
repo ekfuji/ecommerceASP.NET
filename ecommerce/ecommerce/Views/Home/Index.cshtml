@@ -1,25 +1,22 @@
 ﻿@using ecommerce.Models
 @model List<Produto>
 
-@{ 
-    List<Categoria> listaCateg = ViewBag.categoriaC;
+@{
+    List<Categoria> listagemCategorias = ViewBag.categoriaC;
 }
-<div>
 
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        @foreach (Categoria categ in listaCateg)
-        {
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" >
+        @foreach (Categoria categ in listagemCategorias)
+            {
 
-            <label class="btn btn-primary">
-                <input type="checkbox" checked="" autocomplete="off">
-                @Html.ActionLink(categ.Nome,"Index","Home",new { id = categ.CategoriaId})
-            </label>
+                    @Html.ActionLink(categ.Nome, "Index", "Home", new {id = categ.CategoriaId}, new {@class = "btn btn-secondary" })
 
-           }
+
+        }
 
     </div>
 
-    <div class="row" style="grid-column-align:center ">
+    <div class="row" style="-ms-grid-column-align: center ">
         @foreach (Produto produtoCadastrado in Model)
         {
             <div class="col-sm-4" style="text-align: center;">
@@ -35,7 +32,12 @@
     </div>
 
 
-</div>
+    </div>
+
+
+
+
+
 
 
 
