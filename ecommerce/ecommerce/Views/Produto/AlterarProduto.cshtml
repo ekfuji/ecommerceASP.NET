@@ -27,7 +27,7 @@
 
                     })<br />
             @Html.LabelFor(Model => Model.Descricao)
-            @Html.ValidationMessageFor(Model => Model.Descricao, null, new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(Model => Model.Descricao, null, new { @class = "text-danger", enctype = "multipart/form-data" })<br />
             @Html.TextBoxFor(Model => Model.Descricao,
                     new
                     {
