@@ -69,5 +69,9 @@ namespace ecommerce.DAL
         }
         #endregion
 
+        public static List<Produto> BuscarPorCateg(int? id)
+        {
+            return ctx.Produtos.Include("Categoria").Where(x => x.CategoriaId == id).ToList();
+        }
     }
 }

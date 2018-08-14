@@ -1,0 +1,42 @@
+﻿@using ecommerce.Models
+@model List<Produto>
+
+@{ 
+    List<Categoria> listaCateg = ViewBag.categoriaC;
+}
+<div>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        @foreach (Categoria categ in listaCateg)
+        {
+
+            <label class="btn btn-primary">
+                <input type="checkbox" checked="" autocomplete="off">
+                @Html.ActionLink(categ.Nome,"Index","Home",new { id = categ.CategoriaId})
+            </label>
+
+           }
+
+    </div>
+
+    <div class="row" style="grid-column-align:center ">
+        @foreach (Produto produtoCadastrado in Model)
+        {
+            <div class="col-sm-4" style="text-align: center;">
+                <img src="~/Images/@produtoCadastrado.Imagem" style="width: 200px; height: 200px" /><br />
+
+                @produtoCadastrado.Nome
+                <br />
+                @produtoCadastrado.Preco
+
+
+            </div>
+        }
+    </div>
+
+
+</div>
+
+
+
+
