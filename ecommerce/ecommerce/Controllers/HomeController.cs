@@ -16,20 +16,27 @@ namespace ecommerce.Controllers
         {
             try
             {
-            ViewBag.categoriaC = CategoriaDAL.ReturnCategorias();
-           if(id == null)
-            {
-            return View(ProdutoDAO.ReturnProdutos());
+                ViewBag.Validar = false;
+                ViewBag.categoriaC = CategoriaDAL.ReturnCategorias();
+                if (id == null)
+                {
+                    return View(ProdutoDAO.ReturnProdutos());
 
-            }
-            return View(ProdutoDAO.BuscarPorCateg(id));  
+                }
+                var categ = ProdutoDAO.BuscarPorCateg(id);
+                if (categ.Count.Equals(0))
+                {
+                    ViewBag.Validar = true;
+                    return View(ProdutoDAO.BuscarPorCateg(id));
+                }
+                return View(ProdutoDAO.BuscarPorCateg(id));
             }
             catch (Exception ex)
             {
-                
+
                 return View(ex);
             }
-    
+
         }
 
         public ActionResult DetalheProduto(int id)
