@@ -25,8 +25,6 @@
     <div class="row" style="-ms-grid-column-align: center ">
         @foreach (Produto produtoCadastrado in Model)
         {
-            if (produtoCadastrado.Nome != null)
-            {
             <div class="card border-primary mb-3" style="max-width: 20rem; text-align: center; margin-left: 20px; margin-top: 20px">
                 <div class="card-header"><b>@produtoCadastrado.Nome</b></div>
                 <img src="~/Images/@produtoCadastrado.Imagem" style="width: 200px; height: 200px; align-self: center"/><br/>
@@ -39,14 +37,6 @@
 
 
             </div>
-            }
-            else
-            {
-                   
-                    <img src="~/Images/nenhumProdutoNaCategoria.png" class="align-content-lg-center"/>
-                
-            }
-
         }
     </div>
 
