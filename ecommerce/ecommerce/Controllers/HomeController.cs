@@ -27,9 +27,9 @@ namespace ecommerce.Controllers
                 if (categ.Count.Equals(0))
                 {
                     ViewBag.Validar = true;
-                    return View(ProdutoDAO.BuscarPorCateg(id));
+                    return View(categ);
                 }
-                return View(ProdutoDAO.BuscarPorCateg(id));
+                return View(categ);
             }
             catch (Exception ex)
             {
