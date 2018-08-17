@@ -41,7 +41,7 @@ namespace ecommerce.Controllers
 
         public ActionResult DetalheProduto(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             } 
@@ -52,7 +52,24 @@ namespace ecommerce.Controllers
                 return View(ProdutoDAO.BuscarProdutoPorId(id));
         }
 
+        public ActionResult AdicionarAoCarrinho(int id)
+        {
+            Produto produto = ProdutoDAO.BuscarProdutoPorId(id);
+            ItemVenda itemVenda = new ItemVenda
+            {
+                Produto = produto,
+                Quantidade = 1,
+                Valor = produto.Preco,
+                Data = DateTime.Now
+            };
+            ItemVendaDAO.CadastrarItem(itemVenda);
+            return RedirectToAction("CarrinhoCompras","Home");
+        }
 
+        public ActionResult CarrinhoCompras()
+        {
+            return View(ItemVendaDAO.ListarVenda());
+        }
 
     }
 }

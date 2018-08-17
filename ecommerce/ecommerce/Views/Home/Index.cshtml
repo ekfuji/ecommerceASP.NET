@@ -5,6 +5,7 @@
     List<Categoria> listagemCategorias = ViewBag.categoriaC;
 }
 
+
     <div class="btn-group btn-group-toggle" data-toggle="buttons" >
         @foreach (Categoria categ in listagemCategorias)
             {
@@ -33,8 +34,10 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" style="text-align: center"><b>R$@produtoCadastrado.Preco</b><a href='@Url.Action("DetalheProduto", "Home", new { id = produtoCadastrado.ProdutoId })' style="margin-left: 10% "><img src="~/Images/more.png" /></a></li>
-               </ul>
+                    <li class="list-group-item" style="text-align: center">@Html.ActionLink("Adiconar", "AdicionarAoCarrinho", "Home",new { id = produtoCadastrado.ProdutoId }, new {@class = "btn btn-success"})</li>
 
+               </ul>
+                
 
             </div>
         }
