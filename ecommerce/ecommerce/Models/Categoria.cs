@@ -10,6 +10,7 @@ namespace ecommerce.Models
         [Key]
         public int CategoriaId { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
         [Required(ErrorMessage = "Campo obrigatório!")]
         [MaxLength(50, ErrorMessage = "O campo deve ter no máximo de 50 caracteres!")]
         [Display(Name = "Nome da Categoria")]

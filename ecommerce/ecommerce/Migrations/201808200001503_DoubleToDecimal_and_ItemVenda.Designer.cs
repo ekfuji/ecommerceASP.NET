@@ -7,13 +7,13 @@ namespace ecommerce.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ItemVenda : IMigrationMetadata
+    public sealed partial class DoubleToDecimal_and_ItemVenda : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ItemVenda));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DoubleToDecimal_and_ItemVenda));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808171240172_ItemVenda"; }
+            get { return "201808200001503_DoubleToDecimal_and_ItemVenda"; }
         }
         
         string IMigrationMetadata.Source

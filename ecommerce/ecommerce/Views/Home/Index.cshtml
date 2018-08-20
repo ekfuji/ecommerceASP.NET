@@ -6,42 +6,42 @@
 }
 
 
-    <div class="btn-group btn-group-toggle" data-toggle="buttons" >
-        @foreach (Categoria categ in listagemCategorias)
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    @foreach (Categoria categ in listagemCategorias)
             {
 
-                    @Html.ActionLink(categ.Nome, "Index", "Home", new {id = categ.CategoriaId}, new {@class = "btn btn-secondary" })
+        @Html.ActionLink(categ.Nome, "Index", "Home", new { id = categ.CategoriaId }, new { @class = "btn btn-secondary" })
 
 
-        }
+    }
 
-    </div>
+</div>
 <div>
-    @if(ViewBag.Validar)
+    @if (ViewBag.Validar)
     {
         <div style="padding: 20px 20px 20px 20px; margin-top: 60px" align="center"><img src="~/Images/nenhumProdutoNaCategoria.png" /></div>
-        
+
     }
 </div>
-    <div class="row" style="-ms-grid-column-align: center ">
-        @foreach (Produto produtoCadastrado in Model)
-        {
-            <div class="card border-primary mb-3" style="max-width: 20rem; text-align: center; margin-left: 20px; margin-top: 20px">
-                <div class="card-header"><b>@produtoCadastrado.Nome</b></div>
-                <img src="~/Images/@produtoCadastrado.Imagem" style="width: 200px; height: 200px; align-self: center"/><br/>
-                <div class="card-body">
-                    <p class="card-text" style="width: 200px">@produtoCadastrado.Descricao.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="text-align: center"><b>R$@produtoCadastrado.Preco</b><a href='@Url.Action("DetalheProduto", "Home", new { id = produtoCadastrado.ProdutoId })' style="margin-left: 10% "><img src="~/Images/more.png" /></a></li>
-                    <li class="list-group-item" style="text-align: center">@Html.ActionLink("Adiconar", "AdicionarAoCarrinho", "Home",new { id = produtoCadastrado.ProdutoId }, new {@class = "btn btn-success"})</li>
-
-               </ul>
-                
-
+<div class="row" style="-ms-grid-column-align: center ">
+    @foreach (Produto produtoCadastrado in Model)
+    {
+        <div class="card border-primary mb-3" style="max-width: 30rem; text-align: center; margin-left: 20px; margin-top: 20px">
+            <div class="card-header"><b>@produtoCadastrado.Nome</b></div>
+            <img src="~/Images/@produtoCadastrado.Imagem" style="width: 220px; height: 220px; align-self: center" /><br />
+            <div class="card-body">
+                <p class="card-text" style="width: 220px">@produtoCadastrado.Descricao.</p>
             </div>
-        }
-    </div>
+            <ul class="list-group list-group-flush" style="align-self: center">
+                <li class="list-group-item">
+                    <b>R$@produtoCadastrado.Preco</b>
+                    <a href='@Url.Action("DetalheProduto", "Home", new { id = produtoCadastrado.ProdutoId })'><img src="~/Images/more.png"/></a>
+                    <a href='@Url.Action("AdicionarAoCarrinho", "Home", new { id = produtoCadastrado.ProdutoId })'><img src="~/Images/carrinho.png" /></a>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
 
 
 

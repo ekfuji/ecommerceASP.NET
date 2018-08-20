@@ -15,12 +15,14 @@ namespace ecommerce.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<ItemVenda> ItemVendas { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Properties<string>().Configure(c => c.HasMaxLength(100));
-          
+            modelBuilder.Properties<decimal>().Configure(config => config.HasPrecision(18,2));
+
         }
     }
 }

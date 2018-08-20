@@ -13,23 +13,27 @@ namespace ecommerce.Models
         [Key]
         public int ProdutoId { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
         [Required(ErrorMessage = "Campo obrigatório!")]
         [MaxLength(50, ErrorMessage = "O campo deve ter no máximo de 50 caracteres!")]
         [Display(Name = "Nome do produto")]
         public string Nome { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
         [Display(Name = "Descrição do produto")]
         [DataType(DataType.MultilineText)]
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [Display(Name = "Valor do produto")]
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
+
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [Display(Name = "Categoria do produto")]
         public int CategoriaId { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
         public string Imagem { get; set; }
 
         public virtual Categoria Categoria { get; set; }

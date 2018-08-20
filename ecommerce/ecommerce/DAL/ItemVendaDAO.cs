@@ -1,8 +1,10 @@
 ﻿using ecommerce.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ecommerce.DAL
 {
@@ -23,7 +25,7 @@ namespace ecommerce.DAL
         }
         #endregion
 
-        #region Listar Venda
+        #region Listar Itens Venda
         public static List<ItemVenda> ListarVenda()
         {
             return ctx.ItemVendas.ToList();
@@ -31,16 +33,13 @@ namespace ecommerce.DAL
         #endregion
 
         #region Remover ItemVenda
-        public static bool RemoverItemVenda(int id)
+        public static void RemoverItemVenda(int id)
         {
-            ItemVenda itemVenda = BuscarById(id);
-            if (itemVenda.ItemVendaId != 0)
-            {
+            ItemVenda itemVenda = new ItemVenda();          
+               itemVenda = BuscarById(id);
                 ctx.ItemVendas.Remove(itemVenda);
                 ctx.SaveChanges();
-                return true;
-            }
-            return false;
+
         }
         #endregion
 
@@ -48,6 +47,14 @@ namespace ecommerce.DAL
         public static ItemVenda BuscarById(int id)
         {
             return ctx.ItemVendas.FirstOrDefault(x => x.ItemVendaId == id);
+        }
+        #endregion
+
+        #region Alterar ItemVenda
+        public static void AlterarItemVenda(ItemVenda itemVenda)
+        {
+                ctx.Entry(itemVenda).State = EntityState.Modified;
+                ctx.SaveChanges();
         }
         #endregion
 

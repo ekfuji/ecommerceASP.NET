@@ -23,10 +23,8 @@ namespace ecommerce.Models
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [Display(Name = "Valor do produto")]
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório!")]
-        [Display(Name = "Data")]
-        public DateTime Data { get; set; }
+        public IList<Pedido> Pedidos { get; set; }
     }
 }

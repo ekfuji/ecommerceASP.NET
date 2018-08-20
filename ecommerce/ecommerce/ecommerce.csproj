@@ -306,6 +306,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\20482412_1SZ.jpg" />
     <Content Include="Images\20628627_1GG.jpg" />
+    <Content Include="Images\carrinho.png" />
     <Content Include="Images\more.png" />
     <Content Include="Images\nenhumProdutoNaCategoria.png" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -340,23 +341,25 @@
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="DAL\CategoriaDAL.cs" />
     <Compile Include="DAL\ItemVendaDAO.cs" />
+    <Compile Include="DAL\PedidoDAO.cs" />
     <Compile Include="DAL\ProdutoDAO.cs" />
     <Compile Include="DAL\Singleton.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808110040592_CriarBanco.cs" />
-    <Compile Include="Migrations\201808110040592_CriarBanco.Designer.cs">
-      <DependentUpon>201808110040592_CriarBanco.cs</DependentUpon>
+    <Compile Include="Migrations\201808200001503_DoubleToDecimal_and_ItemVenda.cs" />
+    <Compile Include="Migrations\201808200001503_DoubleToDecimal_and_ItemVenda.Designer.cs">
+      <DependentUpon>201808200001503_DoubleToDecimal_and_ItemVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808171240172_ItemVenda.cs" />
-    <Compile Include="Migrations\201808171240172_ItemVenda.Designer.cs">
-      <DependentUpon>201808171240172_ItemVenda.cs</DependentUpon>
+    <Compile Include="Migrations\201808200126433_Pedido.cs" />
+    <Compile Include="Migrations\201808200126433_Pedido.Designer.cs">
+      <DependentUpon>201808200126433_Pedido.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\ItemVenda.cs" />
+    <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -393,11 +396,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808110040592_CriarBanco.resx">
-      <DependentUpon>201808110040592_CriarBanco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808200001503_DoubleToDecimal_and_ItemVenda.resx">
+      <DependentUpon>201808200001503_DoubleToDecimal_and_ItemVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808171240172_ItemVenda.resx">
-      <DependentUpon>201808171240172_ItemVenda.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808200126433_Pedido.resx">
+      <DependentUpon>201808200126433_Pedido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
