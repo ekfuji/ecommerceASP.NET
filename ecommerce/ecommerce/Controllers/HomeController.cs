@@ -6,12 +6,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ecommerce.Models;
+using ecommerce.Util;
 
 namespace ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        Context ctx = new Context();
+
+        private static string guid = Sessao.RetornarCarrinhoId();
+
         // GET: Home
         #region index
         public ActionResult Index(int? id)
@@ -60,14 +63,29 @@ namespace ecommerce.Controllers
         #region Adicionar ao carrinho
         public ActionResult AdicionarAoCarrinho(int id)
         {
+
+
             Produto produto = ProdutoDAO.BuscarProdutoPorId(id);
-            ItemVenda itemVenda = new ItemVenda
+            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
+            if (item == null)
             {
-                Produto = produto,
-                Quantidade = 1,
-                Valor = produto.Preco,
-            };
-            ItemVendaDAO.CadastrarItem(itemVenda);
+
+                ItemVenda itemVenda = new ItemVenda
+                {
+                    Produto = produto,
+                    Quantidade = 1,
+                    Valor = produto.Preco,
+                    Data = DateTime.Now,
+                    CarrinhoId = Sessao.RetornarCarrinhoId()
+                };
+                ItemVendaDAO.CadastrarItem(itemVenda);
+            }
+            else
+            {
+                item.Quantidade++;
+            }
+
+
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
@@ -75,17 +93,40 @@ namespace ecommerce.Controllers
         #region Listar vendas
         public ActionResult CarrinhoCompras()
         {
-            return View(ItemVendaDAO.ListarVenda());
+
+            return View(ItemVendaDAO.ListarVendaByGuid(Sessao.RetornarCarrinhoId()));
         }
         #endregion
 
         #region Remover do carrinho
 
-        public ActionResult RemoverDoCarrinho(int id)
+        public ActionResult RemoverQtde(int id)
         {
-            ItemVendaDAO.RemoverItemVenda(id);
+            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
+
+            if (item.Quantidade != 1)
+            {
+                item.Quantidade--;
+            }
+
+            else
+            {
+                item.Quantidade--;
+                ItemVendaDAO.RemoverItemVenda(id);
+            }
+
             return RedirectToAction("CarrinhoCompras", "Home");
         }
+
+        public ActionResult AddQtde(int id)
+        {
+            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
+
+            item.Quantidade++;
+
+            return RedirectToAction("CarrinhoCompras", "Home");
+        }
+
 
 
         #endregion

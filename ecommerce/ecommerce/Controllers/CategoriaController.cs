@@ -10,7 +10,7 @@ namespace ecommerce.Controllers
 {
     public class CategoriaController : Controller
     {
-        private static Context ctx = new Context();
+        
         //identacao CTRL+K+D
         #region View Index
         public ActionResult Index()

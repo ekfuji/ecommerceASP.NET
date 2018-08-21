@@ -355,6 +355,10 @@
     <Compile Include="Migrations\201808200126433_Pedido.Designer.cs">
       <DependentUpon>201808200126433_Pedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808211131187_AddCarrinhoIdItemVenda.cs" />
+    <Compile Include="Migrations\201808211131187_AddCarrinhoIdItemVenda.Designer.cs">
+      <DependentUpon>201808211131187_AddCarrinhoIdItemVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Context.cs" />
@@ -362,6 +366,7 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Sessao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -401,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808200126433_Pedido.resx">
       <DependentUpon>201808200126433_Pedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211131187_AddCarrinhoIdItemVenda.resx">
+      <DependentUpon>201808211131187_AddCarrinhoIdItemVenda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

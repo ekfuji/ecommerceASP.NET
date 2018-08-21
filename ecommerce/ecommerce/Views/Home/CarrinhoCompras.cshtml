@@ -1,35 +1,38 @@
-﻿@model IEnumerable<ecommerce.Models.ItemVenda>
-
+﻿@using ecommerce.Models
+@model List<ItemVenda>
 @{
     ViewBag.Title = "CarrinhoCompras";
-    Layout = "~/Views/Shared/Layout.cshtml";
+
 }
 
 <h2>CarrinhoCompras</h2>
 
-<table class="table">
+
+<table class="table table-hover table-striped">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantidade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th></th>
+        <th>Imagem</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th>SubTotal</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <input type="submit" value="-" class="btn btn-success" /> @Html.DisplayFor(modelItem => item.Quantidade) <input type="submit" value="+" class="btn btn-success" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "RemoverDoCarrinho", new { id=item.ItemVendaId })
-        </td>
+    @foreach (ItemVenda item in Model)
+    {
+        <tr>
+            <td><img src="~/Images/@item.Produto.Imagem" alt="Imagem do produto" style="width: 100px; height: 100px" /></td>
+            <td>@item.Produto.Nome</td>
+            <td>
+                <button type="submit" value="-1" class="btn btn-danger" style="margin: 10px" href="@Url.Action("AdicionarAoCarrinho", "Home", new { id = item.Produto.ProdutoId })">-</button>
+                @item.Quantidade
+                <button type="submit" value="1" class="btn btn-success" style="margin: 10px" href="@Url.Action("AdicionarAoCarrinho", "Home", new { id = item. })">+</button></td>
+            <td>@item.Valor.ToString("C2")</td>
+                @{
+                    decimal subtotal = item.Quantidade * item.Valor;
+
+                 }
+            <td>@subtotal.ToString("C2")</td>
     </tr>
-}
+                }
 
 </table>

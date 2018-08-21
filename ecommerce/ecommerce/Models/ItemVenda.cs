@@ -26,5 +26,9 @@ namespace ecommerce.Models
         public decimal Valor { get; set; }
 
         public IList<Pedido> Pedidos { get; set; }
+
+        public DateTime Data { get; set; }
+
+        public string CarrinhoId { get; set; }
     }
 }

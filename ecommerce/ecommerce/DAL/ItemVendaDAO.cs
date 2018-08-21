@@ -26,11 +26,17 @@ namespace ecommerce.DAL
         #endregion
 
         #region Listar Itens Venda
-        public static List<ItemVenda> ListarVenda()
+        public static List<ItemVenda> ListarVendaByGuid(string carrinhoGuid)
         {
-            return ctx.ItemVendas.ToList();
+            return ctx.ItemVendas.Include("Produto").Where(e => e.CarrinhoId.Equals(carrinhoGuid)).ToList();
         }
         #endregion
+
+        public static ItemVenda BuscarByProd(int id)
+        {
+           ItemVenda carrinho = ctx.ItemVendas.Include("Produto").Where(e => e.Produto.ProdutoId == id).FirstOrDefault();
+            return carrinho;
+        }
 
         #region Remover ItemVenda
         public static void RemoverItemVenda(int id)
