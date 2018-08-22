@@ -23,9 +23,10 @@
             <td><img src="~/Images/@item.Produto.Imagem" alt="Imagem do produto" style="width: 100px; height: 100px" /></td>
             <td>@item.Produto.Nome</td>
             <td>
-                <button type="submit" value="-1" class="btn btn-danger" style="margin: 10px" href="@Url.Action("AdicionarAoCarrinho", "Home", new { id = item.Produto.ProdutoId })">-</button>
+                <button type="submit" value="-" class="btn btn-danger" style="margin: 10px" href="@Url.Action("RemoverQtde", "Home", new { id = item.Produto.ProdutoId })">-</button>
                 @item.Quantidade
-                <button type="submit" value="1" class="btn btn-success" style="margin: 10px" href="@Url.Action("AdicionarAoCarrinho", "Home", new { id = item. })">+</button></td>
+                <button type="submit" value="+" class="btn btn-success" style="margin: 10px"  href="@Url.Action("AddQtde", "Home", new { id = item.Produto.ProdutoId })">+</button>
+            </td>
             <td>@item.Valor.ToString("C2")</td>
                 @{
                     decimal subtotal = item.Quantidade * item.Valor;

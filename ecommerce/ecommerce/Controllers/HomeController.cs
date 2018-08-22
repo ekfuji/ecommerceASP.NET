@@ -66,10 +66,48 @@ namespace ecommerce.Controllers
 
 
             Produto produto = ProdutoDAO.BuscarProdutoPorId(id);
-            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
-            if (item == null)
-            {
+            string CarrinhoId = Sessao.RetornarCarrinhoId();
+            ItemVenda item = ItemVendaDAO.BuscarPeloGuidCar(CarrinhoId);
 
+            if (item != null)
+            {
+                ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(produto.ProdutoId, CarrinhoId);
+
+                if (itemVendaProd != null)
+                {
+                    if(itemVendaProd.Produto.ProdutoId == produto.ProdutoId)
+                    {
+                    bool add = true;
+                    ItemVendaDAO.AlteraQuantidade(itemVendaProd, add);
+                    }
+                }
+                else if (item.CarrinhoId == null)
+                {
+                    ItemVenda itemVenda = new ItemVenda
+                    {
+                        Produto = produto,
+                        Quantidade = 1,
+                        Valor = produto.Preco,
+                        Data = DateTime.Now,
+                        CarrinhoId = Sessao.RetornarCarrinhoId()
+                    };
+                    ItemVendaDAO.CadastrarItem(itemVenda);
+                }
+                else
+                {
+                    ItemVenda itemVenda = new ItemVenda
+                    {
+                        Produto = produto,
+                        Quantidade = 1,
+                        Valor = produto.Preco,
+                        Data = DateTime.Now,
+                        CarrinhoId = Sessao.RetornarCarrinhoId()
+                    };
+                    ItemVendaDAO.CadastrarItem(itemVenda);
+                }
+            }
+            else
+            {
                 ItemVenda itemVenda = new ItemVenda
                 {
                     Produto = produto,
@@ -80,12 +118,7 @@ namespace ecommerce.Controllers
                 };
                 ItemVendaDAO.CadastrarItem(itemVenda);
             }
-            else
-            {
-                item.Quantidade++;
-            }
-
-
+            
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
@@ -102,33 +135,34 @@ namespace ecommerce.Controllers
 
         public ActionResult RemoverQtde(int id)
         {
-            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
-
-            if (item.Quantidade != 1)
+            string CarrinhoId = Sessao.RetornarCarrinhoId();
+            ItemVenda item = ItemVendaDAO.BuscarPeloGuidCar(CarrinhoId);
+            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(item.Produto.ProdutoId, CarrinhoId);
+            bool remove = false;
+            if (itemVendaProd.Quantidade != 1)
             {
-                item.Quantidade--;
+                ItemVendaDAO.AlteraQuantidade(itemVendaProd, remove);
             }
-
             else
             {
-                item.Quantidade--;
-                ItemVendaDAO.RemoverItemVenda(id);
+                ItemVendaDAO.AlteraQuantidade(itemVendaProd, remove);
+                ItemVendaDAO.RemoverItemVenda(itemVendaProd.ItemVendaId);
             }
 
             return RedirectToAction("CarrinhoCompras", "Home");
         }
+        #endregion
 
+        #region Adicionar Itens no Carrinho
         public ActionResult AddQtde(int id)
         {
-            ItemVenda item = ItemVendaDAO.BuscarByProd(id);
-
-            item.Quantidade++;
-
+            string CarrinhoId = Sessao.RetornarCarrinhoId();
+            ItemVenda item = ItemVendaDAO.BuscarPeloGuidCar(CarrinhoId);
+            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(item.Produto.ProdutoId, CarrinhoId);
+            bool add = true;
+            ItemVendaDAO.AlteraQuantidade(item, add);
             return RedirectToAction("CarrinhoCompras", "Home");
         }
-
-
-
         #endregion
 
         #region Alterar quantidade

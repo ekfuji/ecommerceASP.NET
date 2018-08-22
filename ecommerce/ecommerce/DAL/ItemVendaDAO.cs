@@ -15,13 +15,13 @@ namespace ecommerce.DAL
         #region Add no Carrinho
         public static bool CadastrarItem(ItemVenda item)
         {
-            if(item.Produto != null)
+            if (item.Produto != null)
             {
                 ctx.ItemVendas.Add(item);
                 ctx.SaveChanges();
                 return true;
             }
-                return false;
+            return false;
         }
         #endregion
 
@@ -32,19 +32,21 @@ namespace ecommerce.DAL
         }
         #endregion
 
-        public static ItemVenda BuscarByProd(int id)
+        #region Buscar ItemVenda pelo Guid do Carrinho
+        public static ItemVenda BuscarPeloGuidCar(string CarrinhoId)
         {
-           ItemVenda carrinho = ctx.ItemVendas.Include("Produto").Where(e => e.Produto.ProdutoId == id).FirstOrDefault();
-            return carrinho;
+            return ctx.ItemVendas.Where(e => e.CarrinhoId == CarrinhoId).FirstOrDefault();
+
         }
+        #endregion
 
         #region Remover ItemVenda
         public static void RemoverItemVenda(int id)
         {
-            ItemVenda itemVenda = new ItemVenda();          
-               itemVenda = BuscarById(id);
-                ctx.ItemVendas.Remove(itemVenda);
-                ctx.SaveChanges();
+            ItemVenda itemVenda = new ItemVenda();
+            itemVenda = BuscarById(id);
+            ctx.ItemVendas.Remove(itemVenda);
+            ctx.SaveChanges();
 
         }
         #endregion
@@ -59,8 +61,31 @@ namespace ecommerce.DAL
         #region Alterar ItemVenda
         public static void AlterarItemVenda(ItemVenda itemVenda)
         {
-                ctx.Entry(itemVenda).State = EntityState.Modified;
-                ctx.SaveChanges();
+            ctx.Entry(itemVenda).State = EntityState.Modified;
+            ctx.SaveChanges();
+        }
+        #endregion
+
+        #region Alterar Quantidade
+        public static void AlteraQuantidade(ItemVenda item, bool qtde)
+        {
+            if (qtde)
+            {
+                item.Quantidade++;
+            }
+            else
+            {
+                item.Quantidade--;
+            }
+            ctx.Entry(item).State = EntityState.Modified;
+            ctx.SaveChanges();
+        }
+        #endregion
+
+        #region Buscar Item pelo Id do Produto
+        public static ItemVenda BuscarByProduto(int id , string carrinhoId)
+        {
+            return ctx.ItemVendas.Include("Produto").Where(e => e.Produto.ProdutoId == id && e.CarrinhoId == carrinhoId).FirstOrDefault();
         }
         #endregion
 
