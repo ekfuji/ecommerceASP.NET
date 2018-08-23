@@ -23,9 +23,9 @@
             <td><img src="~/Images/@item.Produto.Imagem" alt="Imagem do produto" style="width: 100px; height: 100px" /></td>
             <td>@item.Produto.Nome</td>
             <td>
-                <button type="submit" value="-" class="btn btn-danger" style="margin: 10px" href="@Url.Action("RemoverQtde", "Home", new { id = item.Produto.ProdutoId })">-</button>
+                @Html.ActionLink("-", "RemoverQtde", "Home", new { id = item.Produto.ProdutoId }, new { @class = "btn btn-secondary" })
                 @item.Quantidade
-                <button type="submit" value="+" class="btn btn-success" style="margin: 10px"  href="@Url.Action("AddQtde", "Home", new { id = item.Produto.ProdutoId })">+</button>
+                @Html.ActionLink("+", "AddQtde", "Home", new { id = item.Produto.ProdutoId }, new { @class = "btn btn-primary" })
             </td>
             <td>@item.Valor.ToString("C2")</td>
                 @{
