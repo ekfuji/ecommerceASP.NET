@@ -14,6 +14,7 @@ namespace ecommerce.Controllers
     {
 
         private static string guid = Sessao.RetornarCarrinhoId();
+        decimal total = 0;
 
         // GET: Home
         #region index
@@ -137,7 +138,8 @@ namespace ecommerce.Controllers
         {
             string CarrinhoId = Sessao.RetornarCarrinhoId();
             ItemVenda item = ItemVendaDAO.BuscarPeloGuidCar(CarrinhoId);
-            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(item.Produto.ProdutoId, CarrinhoId);
+            Produto produto = ProdutoDAO.BuscarProdutoPorId(id);
+            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(produto.ProdutoId, CarrinhoId);
             bool remove = false;
             if (itemVendaProd.Quantidade != 1)
             {
@@ -158,9 +160,10 @@ namespace ecommerce.Controllers
         {
             string CarrinhoId = Sessao.RetornarCarrinhoId();
             ItemVenda item = ItemVendaDAO.BuscarPeloGuidCar(CarrinhoId);
-            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(item.Produto.ProdutoId, CarrinhoId);
+            Produto produto = ProdutoDAO.BuscarProdutoPorId(id);
+            ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(produto.ProdutoId, CarrinhoId);
             bool add = true;
-            ItemVendaDAO.AlteraQuantidade(item, add);
+            ItemVendaDAO.AlteraQuantidade(itemVendaProd, add);
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
@@ -177,5 +180,15 @@ namespace ecommerce.Controllers
         }
 
         #endregion
+
+        #region Valo Total no Carrinho
+        public ActionResult ValorCar(decimal subtotal)
+        {
+            total += subtotal;
+            ViewBag.Total = total;
+            return RedirectToAction("CarrinhoCompras", "Home");
+        }
+        #endregion
+
     }
 }

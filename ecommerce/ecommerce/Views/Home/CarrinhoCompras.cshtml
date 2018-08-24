@@ -2,7 +2,9 @@
 @model List<ItemVenda>
 @{
     ViewBag.Title = "CarrinhoCompras";
-
+    decimal subtotal = 0;
+    ViewBag.Total = 0;
+    
 }
 
 <h2>CarrinhoCompras</h2>
@@ -28,12 +30,21 @@
                 @Html.ActionLink("+", "AddQtde", "Home", new { id = item.Produto.ProdutoId }, new { @class = "btn btn-primary" })
             </td>
             <td>@item.Valor.ToString("C2")</td>
-                @{
-                    decimal subtotal = item.Quantidade * item.Valor;
 
-                 }
+            @{
+                subtotal = item.Quantidade * item.Valor;
+                Html.Action("ValorCar","Home",subtotal);
+            }
+
             <td>@subtotal.ToString("C2")</td>
-    </tr>
+        </tr>
                 }
 
+            
+            
+       
+           
 </table>
+ 
+
+         
