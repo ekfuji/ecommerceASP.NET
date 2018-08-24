@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "CarrinhoCompras";
     decimal subtotal = 0;
-    ViewBag.Total = 0;
+    var teste = ViewBag.Total;
     
 }
 
@@ -33,14 +33,17 @@
 
             @{
                 subtotal = item.Quantidade * item.Valor;
-                Html.Action("ValorCar","Home",subtotal);
+                
             }
 
             <td>@subtotal.ToString("C2")</td>
         </tr>
                 }
 
-            
+            @if(TempData["QtdeTotal"] != null)
+            {
+                @TempData["QtdeTotal"].ToString();
+            }
             
        
            

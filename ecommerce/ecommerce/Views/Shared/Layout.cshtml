@@ -28,7 +28,11 @@
             </li>
         </ul>
         <div class="nav-item">
-            <a href='@Url.Action("CarrinhoCompras", "Home")'><img src="~/Images/carrinho2.png"/></a>
+            @if (TempData["QtdeTotal"] != null)
+            {
+                <h1>@TempData["QtdeTotal"].ToString()</h1>
+            }
+           <a href='@Url.Action("CarrinhoCompras", "Home")'><img src="~/Images/carrinho2.png"/></a>
         </div>
     </div>
 </nav>

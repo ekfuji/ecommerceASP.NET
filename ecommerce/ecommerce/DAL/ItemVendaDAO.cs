@@ -40,6 +40,13 @@ namespace ecommerce.DAL
         }
         #endregion
 
+        #region Buscar ItemVendas Pelo guid
+        public static List<ItemVenda> BuscarItemVendasGuid(string CarrinhoId)
+        {
+            return ctx.ItemVendas.Where(e => e.CarrinhoId == CarrinhoId).ToList();
+        }
+        #endregion
+
         #region Remover ItemVenda
         public static void RemoverItemVenda(int id)
         {
