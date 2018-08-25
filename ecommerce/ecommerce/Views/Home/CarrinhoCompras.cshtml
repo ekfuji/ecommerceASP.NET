@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "CarrinhoCompras";
     decimal subtotal = 0;
-    var teste = ViewBag.Total;
+    var total = TempData["ValorTotal"];
     
 }
 
@@ -39,15 +39,9 @@
             <td>@subtotal.ToString("C2")</td>
         </tr>
                 }
-
-            @if(TempData["QtdeTotal"] != null)
-            {
-                @TempData["QtdeTotal"].ToString();
-            }
-            
        
-           
 </table>
- 
+        <div>R$@total.ToString()</div>
+
 
          

@@ -22,12 +22,13 @@ namespace ecommerce.Controllers
         {
             try
             {
+                QtdeTotalCarrinho();
                 ViewBag.Validar = false;
                 ViewBag.categoriaC = CategoriaDAL.ReturnCategorias();
                 if (id == null)
                 {
+                    
                     return View(ProdutoDAO.ReturnProdutos());
-
                 }
                 var categ = ProdutoDAO.BuscarPorCateg(id);
                 if (categ.Count.Equals(0))
@@ -35,6 +36,7 @@ namespace ecommerce.Controllers
                     ViewBag.Validar = true;
                     return View(categ);
                 }
+
                 return View(categ);
             }
             catch (Exception ex)
@@ -80,7 +82,7 @@ namespace ecommerce.Controllers
                     {
                     bool add = true;
                     ItemVendaDAO.AlteraQuantidade(itemVendaProd, add);
-                        AdicionarQtdeCarrinho(CarrinhoId);
+                       
                     }
                 }
                 else if (item.CarrinhoId == null)
@@ -94,7 +96,7 @@ namespace ecommerce.Controllers
                         CarrinhoId = Sessao.RetornarCarrinhoId()
                     };
                     ItemVendaDAO.CadastrarItem(itemVenda);
-                    AdicionarQtdeCarrinho(CarrinhoId);
+              
                 }
                 else
                 {
@@ -107,7 +109,7 @@ namespace ecommerce.Controllers
                         CarrinhoId = Sessao.RetornarCarrinhoId()
                     };
                     ItemVendaDAO.CadastrarItem(itemVenda);
-                    AdicionarQtdeCarrinho(CarrinhoId);
+                   
                 }
             }
             else
@@ -121,9 +123,10 @@ namespace ecommerce.Controllers
                     CarrinhoId = Sessao.RetornarCarrinhoId()
                 };
                 ItemVendaDAO.CadastrarItem(itemVenda);
-                AdicionarQtdeCarrinho(CarrinhoId);
+                
             }
-            
+            ValorCar();
+            QtdeTotalCarrinho();
             return RedirectToAction("CarrinhoCompras", "Home",ViewBag.Total);
         }
         #endregion
@@ -131,7 +134,8 @@ namespace ecommerce.Controllers
         #region Listar vendas
         public ActionResult CarrinhoCompras()
         {
-
+            ValorCar();
+            QtdeTotalCarrinho();
             return View(ItemVendaDAO.ListarVendaByGuid(Sessao.RetornarCarrinhoId()));
         }
         #endregion
@@ -155,7 +159,8 @@ namespace ecommerce.Controllers
                 ItemVendaDAO.RemoverItemVenda(itemVendaProd.ItemVendaId);
             }
 
-            AdicionarQtdeCarrinho(CarrinhoId);
+            QtdeTotalCarrinho();
+            ValorCar();
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
@@ -169,7 +174,8 @@ namespace ecommerce.Controllers
             ItemVenda itemVendaProd = ItemVendaDAO.BuscarByProduto(produto.ProdutoId, CarrinhoId);
             bool add = true;
             ItemVendaDAO.AlteraQuantidade(itemVendaProd, add);
-            AdicionarQtdeCarrinho(CarrinhoId);
+            ValorCar();
+            QtdeTotalCarrinho();
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
@@ -182,36 +188,27 @@ namespace ecommerce.Controllers
             itemOriginal.Quantidade = itemAlterado.Quantidade;
             itemOriginal.Valor = itemOriginal.Valor * itemAlterado.Quantidade;
             ItemVendaDAO.AlterarItemVenda(itemOriginal);
+            ValorCar();
+            QtdeTotalCarrinho();
             return RedirectToAction("CarrinhoCompras", "Home");
         }
 
         #endregion
 
         #region Valo Total no Carrinho
-        public ActionResult ValorCar(decimal subtotal)
+        public ActionResult ValorCar()
         {
-            //var total += subtotal;
-            //ViewBag.Total = total;
+            string CarrinhoId = Sessao.RetornarCarrinhoId();
+            TempData["ValorTotal"] = ItemVendaDAO.TotalCarrinho(CarrinhoId);
             return RedirectToAction("CarrinhoCompras", "Home");
         }
         #endregion
 
         #region Quantidade de Produtos no Carrinho
-        public void AdicionarQtdeCarrinho(string CarrinhoId)
+        public void QtdeTotalCarrinho()
         {
-            TempData["QtdeTotal"] = 0;
-            List<ItemVenda> Itemvenda = ItemVendaDAO.BuscarItemVendasGuid(CarrinhoId);
-
-            foreach (ItemVenda item in Itemvenda)
-            {
-                qtde += item.Quantidade;
-                TempData["QtdeTotal"] = qtde;
-            }
-
-            if(TempData["QtdeTotal"] == null)
-            {
-                TempData["QtdeTotal"] = 0;
-            }
+            string CarrinhoId = Sessao.RetornarCarrinhoId();
+            TempData["QtdeTotal"] = ItemVendaDAO.QtdeCarinho(CarrinhoId);
         }
         #endregion
     }

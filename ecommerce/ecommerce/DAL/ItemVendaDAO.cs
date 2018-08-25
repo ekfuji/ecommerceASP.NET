@@ -43,7 +43,7 @@ namespace ecommerce.DAL
         #region Buscar ItemVendas Pelo guid
         public static List<ItemVenda> BuscarItemVendasGuid(string CarrinhoId)
         {
-            return ctx.ItemVendas.Where(e => e.CarrinhoId == CarrinhoId).ToList();
+            return ctx.ItemVendas.Where(e => e.CarrinhoId.Equals(CarrinhoId)).ToList();
         }
         #endregion
 
@@ -96,5 +96,14 @@ namespace ecommerce.DAL
         }
         #endregion
 
+
+        public static decimal TotalCarrinho(string carrinhoId)
+        {
+            return BuscarItemVendasGuid(carrinhoId).Sum(x => x.Quantidade * x.Valor);
+        }
+        public static double QtdeCarinho(string carrinhoId)
+        {
+            return BuscarItemVendasGuid(carrinhoId).Sum(x => x.Quantidade);
+        }
     }
 }
