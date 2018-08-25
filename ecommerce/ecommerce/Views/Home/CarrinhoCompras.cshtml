@@ -1,4 +1,5 @@
-﻿@using ecommerce.Models
+﻿@using System.Runtime.InteropServices
+@using ecommerce.Models
 @model List<ItemVenda>
 @{
     ViewBag.Title = "CarrinhoCompras";
@@ -38,10 +39,31 @@
 
             <td>@subtotal.ToString("C2")</td>
         </tr>
-                }
+    }
        
 </table>
-        <div>R$@total.ToString()</div>
+
+<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Resumo do pedido</div>
+    <div class="card-body">
+        <h4 class="card-title">Total: R$@total.ToString()</h4>
+        <p class="card-text">
+            @if (TempData["QtdeTotal"] != null)
+            {
+                var qtde = TempData["QtdeTotal"];
+                if (!qtde.Equals(0))
+                {
+                    <p> <b style="color: dodgerblue">@qtde.ToString()</b> produto(s) selecionados</p>
+                }
+
+            }
+        </p>
+        <p class="card-text"> Para concluir o pedido clique abaixo.</p>
+        <button type="button" class="btn btn-info">Finalizar compra</button>
+
+    </div>
+</div>
+        
 
 
          

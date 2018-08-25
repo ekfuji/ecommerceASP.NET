@@ -30,18 +30,20 @@
                 </li>
             </ul>
             <div class="nav-item">
-
-                <a href='@Url.Action("CarrinhoCompras", "Home")'>
-                    <img src="~/Images/carrinho2.png" />
+                <span class="badge badge-warning" style="width: 20px; text-align: center; padding: 5px; height: 20px; margin-right: -5px">
                     @if (TempData["QtdeTotal"] != null)
                     {
                         var qtde = TempData["QtdeTotal"];
                         if (!qtde.Equals(0))
                         {
-                            <h5>@qtde.ToString()</h5>
+                            <p style="color: aliceblue">@qtde.ToString()</p>
                         }
 
                     }
+                </span>
+                <a href='@Url.Action("CarrinhoCompras", "Home")'>
+                    <img src="~/Images/carrinho2.png" />
+
                 </a>
             </div>
         </div>
