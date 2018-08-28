@@ -20,5 +20,13 @@ namespace ecommerce.Util
 
             return HttpContext.Current.Session[NOME_SESSAO].ToString();
         }
+
+        public static string CriarSessao()
+        {
+            Guid guid = Guid.NewGuid();
+            HttpContext.Current.Session[NOME_SESSAO] = guid.ToString();
+
+            return HttpContext.Current.Session[NOME_SESSAO].ToString();
+        }
     }
 }

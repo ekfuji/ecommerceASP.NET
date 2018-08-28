@@ -1,0 +1,71 @@
+﻿@using ecommerce.Models
+@model Pedido
+@{
+    ViewBag.Title = "FinalizarCarrinho";
+    var total = TempData["ValorTotal"];
+    List<ItemVenda> itens = ViewBag.ListarVendas;
+}
+
+<h2>Finalizar Carrinho</h2>
+
+<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Resumo do pedido</div>
+    <div class="card-body">
+        <p class="card-text">
+            @foreach (ItemVenda item in itens)
+            {
+                <p>
+                <h5><b>@item.Produto.Nome</b></h5>
+
+
+            <p class="card-text">@item.Produto.Preco.ToString("C2") X @item.Quantidade =</p>
+            
+            @{
+                var subtotal = item.Produto.Preco * item.Quantidade;
+            }
+
+            <h6>Subtotal: @subtotal.ToString("C2")</h6>
+                </p>
+
+        }
+
+            </p>
+            <h4 class="card-text">Total: R$@total.ToString()</h4>
+        </div>
+    </div>
+<div class="col-sm-4">
+    @using (Html.BeginForm("Finalizar", "Home", FormMethod.Post, new { @class = "form-group", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+        <fieldset>
+            <legend>Dados do Cliente</legend>
+
+            @Html.Label("Nome do Cliente")
+            @Html.TextBoxFor(model => model.NomeCliente,
+                  new
+                  {
+                      @class = "form-control",
+                      @placeholder = "Nome do Cliente"
+
+                  })<br />
+            @Html.Label("Endereço do Cliente")
+            @Html.TextBoxFor(model => model.EnderecoCliente,
+                  new
+                  {
+                      @class = "form-control",
+                      @placeholder = "Endereço do Cliente"
+
+                  })<br />
+            @Html.Label("Telefone do Cliente")
+            @Html.TextBoxFor(model => model.TelefoneCliente,
+                  new
+                  {
+                      @class = "form-control",
+                      @placeholder = "Telefone do Cliente"
+
+                  })<br />
+            <input type="submit" class="btn btn-primary" value="Finalizar Compra" />
+        </fieldset>
+    }
+</div>

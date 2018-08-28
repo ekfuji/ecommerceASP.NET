@@ -25,7 +25,7 @@ namespace ecommerce.Models
         [Display(Name = "Valor do produto")]
         public decimal Valor { get; set; }
 
-        public IList<Pedido> Pedidos { get; set; }
+        public Pedido Pedido { get; set; }
 
         public DateTime Data { get; set; }
 

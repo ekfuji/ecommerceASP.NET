@@ -8,7 +8,7 @@
     
 }
 
-<h2>CarrinhoCompras</h2>
+<h2>Carrinho Compras</h2>
 
 
 <table class="table table-hover table-striped">
@@ -58,9 +58,8 @@
 
             }
         </p>
-        <p class="card-text"> Para concluir o pedido clique abaixo.</p>
-        <button type="button" class="btn btn-info">Finalizar compra</button>
-
+        <p class="card-text"> Para continuar clique abaixo.</p>
+        @Html.ActionLink("Ir para o Resumo da compra","FinalizarCarrinho","Home",new { @class= "btn btn-info" })
     </div>
 </div>
         

@@ -10,8 +10,8 @@ namespace ecommerce.DAL
     {
         private static Context ctx = Singleton.GetInstance();
 
-        #region Adicionar novo pedido
-        public static bool AddNovaVenda(Pedido novoPedido)
+        #region Salvar Venda 
+        public static bool SalvarVenda(Pedido novoPedido)
         {
             if (novoPedido.ItemsVenda != null)
             {

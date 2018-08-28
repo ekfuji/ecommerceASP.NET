@@ -96,14 +96,18 @@ namespace ecommerce.DAL
         }
         #endregion
 
-
+        #region Valor Total no Carrinho
         public static decimal TotalCarrinho(string carrinhoId)
         {
             return BuscarItemVendasGuid(carrinhoId).Sum(x => x.Quantidade * x.Valor);
         }
+        #endregion
+
+        #region Quantidade total no Carrinho
         public static double QtdeCarinho(string carrinhoId)
         {
             return BuscarItemVendasGuid(carrinhoId).Sum(x => x.Quantidade);
         }
+        #endregion
     }
 }

@@ -10,10 +10,7 @@ namespace ecommerce.Models
     [Table("Pedido")]
     public class Pedido
     {
-        public Pedido()
-        {
-            this.ItemsVenda = new HashSet<ItemVenda>().ToList();
-        }
+
         [Key]
         public int PedidoId { get; set; }
 
@@ -23,5 +20,13 @@ namespace ecommerce.Models
         public decimal ValorTotal { get; set; }
 
         public List<ItemVenda> ItemsVenda { get; set; }
+
+        public string CarrinhoId { get; set; }
+
+        public string NomeCliente { get; set; }
+
+        public string EnderecoCliente { get; set; }
+
+        public string TelefoneCliente { get; set; }
     }
 }

@@ -211,5 +211,38 @@ namespace ecommerce.Controllers
             TempData["QtdeTotal"] = ItemVendaDAO.QtdeCarinho(CarrinhoId);
         }
         #endregion
+
+        #region Pag Resumo da Compra
+        public ActionResult FinalizarCarrinho()
+        {
+            QtdeTotalCarrinho();
+            ValorCar();
+            ViewBag.ListarVendas = ItemVendaDAO.ListarVendaByGuid(Sessao.RetornarCarrinhoId());
+            return View();
+        }
+        #endregion
+
+        #region Finalizar a Compra
+        public ActionResult Finalizar(Pedido pedido)
+        {
+            pedido = new Pedido
+            {
+                ItemsVenda = ItemVendaDAO.ListarVendaByGuid(Sessao.RetornarCarrinhoId()),
+                CarrinhoId = Sessao.RetornarCarrinhoId(),
+                ValorTotal = ItemVendaDAO.TotalCarrinho(Sessao.RetornarCarrinhoId()),
+                NomeCliente = pedido.NomeCliente,
+                EnderecoCliente = pedido.EnderecoCliente,
+                TelefoneCliente = pedido.TelefoneCliente
+            };
+
+            if(pedido != null)
+            {
+                PedidoDAO.SalvarVenda(pedido);
+                Sessao.CriarSessao();
+                return RedirectToAction("Index","Home");
+            }
+            return RedirectToAction("FinalizarCompra", "Home");
+        }
+        #endregion
     }
 }

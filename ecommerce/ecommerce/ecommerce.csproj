@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/7ec8df32-24ed-47a1-8952-7eae7f1eb3fb/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/ecommerce</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -360,6 +361,14 @@
     <Compile Include="Migrations\201808211131187_AddCarrinhoIdItemVenda.Designer.cs">
       <DependentUpon>201808211131187_AddCarrinhoIdItemVenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808281733310_pedidoAlterado.cs" />
+    <Compile Include="Migrations\201808281733310_pedidoAlterado.Designer.cs">
+      <DependentUpon>201808281733310_pedidoAlterado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281819461_Pedido2.cs" />
+    <Compile Include="Migrations\201808281819461_Pedido2.Designer.cs">
+      <DependentUpon>201808281819461_Pedido2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Context.cs" />
@@ -388,6 +397,7 @@
     <Content Include="Views\Home\DetalheProduto.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\CarrinhoCompras.cshtml" />
+    <Content Include="Views\Home\FinalizarCarrinho.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -410,6 +420,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808211131187_AddCarrinhoIdItemVenda.resx">
       <DependentUpon>201808211131187_AddCarrinhoIdItemVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281733310_pedidoAlterado.resx">
+      <DependentUpon>201808281733310_pedidoAlterado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281819461_Pedido2.resx">
+      <DependentUpon>201808281819461_Pedido2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
