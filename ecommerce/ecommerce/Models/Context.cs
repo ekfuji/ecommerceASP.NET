@@ -16,6 +16,7 @@ namespace ecommerce.Models
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<ItemVenda> ItemVendas { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

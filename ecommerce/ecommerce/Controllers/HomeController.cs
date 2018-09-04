@@ -14,8 +14,7 @@ namespace ecommerce.Controllers
     {
 
         private static string guid = Sessao.RetornarCarrinhoId();
-        int qtde = 0;
-      
+
         // GET: Home
         #region index
         public ActionResult Index(int? id)

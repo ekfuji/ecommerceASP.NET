@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ecommerce.Controllers
 {
+    [Authorize]
     public class ProdutoController : Controller
     {
         private static Context ctx = new Context();

@@ -29,6 +29,19 @@
                     @Html.ActionLink("Gerenciar Produtos", "Index", "Produto", null, new { @class = "nav-link" })
                 </li>
             </ul>
+
+            @if (!Request.IsAuthenticated)
+            {
+                <div>
+                    @Html.ActionLink("Login","Login","Usuario",null ,new { @class = "text-warning"})
+                </div>
+            }
+            else
+            {
+                <div>
+                    @Html.ActionLink("Logout", "Logout", "Usuario", null, new { @class = "text-warning" })
+                </div>
+            }
             <div class="nav-item">
                 <span class="badge badge-warning" style="width: 20px; text-align: center; padding: 5px; height: 20px; margin-right: -5px">
                     @if (TempData["QtdeTotal"] != null)

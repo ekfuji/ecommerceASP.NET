@@ -46,11 +46,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -341,11 +341,13 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DAL\CategoriaDAL.cs" />
     <Compile Include="DAL\ItemVendaDAO.cs" />
     <Compile Include="DAL\PedidoDAO.cs" />
     <Compile Include="DAL\ProdutoDAO.cs" />
     <Compile Include="DAL\Singleton.cs" />
+    <Compile Include="DAL\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -369,12 +371,17 @@
     <Compile Include="Migrations\201808281819461_Pedido2.Designer.cs">
       <DependentUpon>201808281819461_Pedido2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809041143468_AddUsuario.cs" />
+    <Compile Include="Migrations\201809041143468_AddUsuario.Designer.cs">
+      <DependentUpon>201809041143468_AddUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\ItemVenda.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Sessao.cs" />
   </ItemGroup>
@@ -398,6 +405,9 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\CarrinhoCompras.cshtml" />
     <Content Include="Views\Home\FinalizarCarrinho.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -426,6 +436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808281819461_Pedido2.resx">
       <DependentUpon>201808281819461_Pedido2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809041143468_AddUsuario.resx">
+      <DependentUpon>201809041143468_AddUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

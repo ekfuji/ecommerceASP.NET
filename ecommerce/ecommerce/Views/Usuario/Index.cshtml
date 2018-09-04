@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ecommerce.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gerenciamento do Usuário</h2>
+
+<p>
+    @Html.ActionLink("Cadastro Usuário", "Create","Usuario")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Senha)
+        </td>
+    </tr>
+}
+
+</table>
